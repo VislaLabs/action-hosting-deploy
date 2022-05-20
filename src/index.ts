@@ -40,6 +40,7 @@ import {
 // Inputs defined in action.yml
 const expires = getInput("expires");
 const projectId = getInput("projectId");
+const message = getInput("message");
 const googleApplicationCredentials = getInput("firebaseServiceAccount", {
   required: true,
 });
@@ -91,6 +92,7 @@ async function run() {
       const deployment = await deployProductionSite(gacFilename, {
         projectId,
         target,
+        message,
       });
       if (deployment.status === "error") {
         throw Error((deployment as ErrorResult).error);
@@ -118,6 +120,7 @@ async function run() {
       expires,
       channelId,
       target,
+      message,
     });
 
     if (deployment.status === "error") {
