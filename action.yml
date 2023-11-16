@@ -54,6 +54,10 @@ inputs:
       directory"
     default: "."
     required: false
+  message:
+    description: "You'll see this message on firebase console."
+    default: ""
+    required: false
 outputs:
   urls:
     description: The url(s) deployed to

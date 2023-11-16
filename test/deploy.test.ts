@@ -19,10 +19,12 @@ const baseChannelDeployConfig: DeployConfig = {
   channelId: "my-channel",
   expires: undefined,
   projectId: "my-project",
+  message: "My message",
 };
 
 const baseLiveDeployConfig: ProductionDeployConfig = {
   projectId: "my-project",
+  message: "My message",
 };
 
 async function fakeExecFail(
@@ -125,6 +127,9 @@ describe("deploy", () => {
       const deployFlags = args[0][1];
       expect(deployFlags).toContain("--only");
       expect(deployFlags).toContain("my-second-site");
+
+      expect(deployFlags).toContain("-m");
+      expect(deployFlags).toContain("My message");
     });
   });
 
@@ -148,6 +153,8 @@ describe("deploy", () => {
       expect(deployFlags).toContain("deploy");
       expect(deployFlags).toContain("--only");
       expect(deployFlags).toContain("hosting");
+      expect(deployFlags).toContain("-m");
+      expect(deployFlags).toContain("My message");
     });
   });
 });
